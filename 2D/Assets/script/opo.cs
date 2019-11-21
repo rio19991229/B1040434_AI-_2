@@ -1,75 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;   // 引用 介面 API
 
 public class opo : MonoBehaviour
 {
-    #region
+    #region 欄位
     // 定義列舉
     // 修飾詞 列舉 列舉名稱 { 列舉內容, .... }
     public enum state
     {
-                      // 一般、尚未完成、完成
+        // 一般、尚未完成、完成
         normal, notComplete, complete
     }
-                      // 使用列舉
-                      // 修飾詞 類型 名稱
+    // 使用列舉
+    // 修飾詞 類型 名稱
     public state _state;
 
-
-
-    [Header("任務對話")]
-    public string sayStart = "嗨,幫我蒐集十顆寶石!";
-    public string not_complete = "任務尚未完成!還需要10顆寶石喔!!";
-    public string complete = "恭喜你!!任務完成~謝謝你";
-    [Header("對話速率")]
-    public float talkspeed = 1.5f;
-    [Header("任務")]
-    public bool mission_complete = false;
-    public int count_player = 0;
-    public int finish = 10;
-    [Header("UI")]
+    [Header("對話")]
+    public string sayStart = "嗨,幫我蒐集十顆鑽石";
+    public string sayNotComplete = "還沒找到十顆鑽石喔";
+    public string sayComplete = "感謝你幫我找到十顆鑽石~";
+    [Header("對話速度")]
+    public float speed = 1.5f;
+    [Header("任務相關")]
+    public bool complete;
+    public int countPlayer;
+    public int countFinish = 10;
+    [Header("介面")]
     public GameObject objCanvas;
     public Text textSay;
-#endregion
+    #endregion
 
     // 2D 觸發事件
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 如果碰到物件為"狐狸"
         if (collision.name == "狐狸")
-        {
-            // 畫布.顯示
-            //objCanvas.SetActive(true);
-            // 文字介面.文字 = 對話1
-            //textSay.text = sayStart;
             Say();
-        }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Sayout();
+        if (collision.name == "狐狸")
+            SayClose();
     }
 
-    ///<summary>
-    ///對話
-    ///</summary>
-    void Say()
+    /// <summary>
+    /// 對話：打字效果
+    /// </summary>
+    private void Say()
     {
+        // 畫布.顯示
         objCanvas.SetActive(true);
-        textSay.text = sayStart;
 
+        // 判斷式(狀態)
+        switch (_state)
+        {
+            case state.normal:
+                textSay.text = sayStart;            // 開始對話
+                break;
+            case state.notComplete:
+                textSay.text = sayNotComplete;      // 未完成對話
+                break;
+            case state.complete:
+                textSay.text = sayComplete;         // 完成對話
+                break;
+        }
     }
-    ///<summary>
-    ///關閉對話
-    ///</summary>
-    void Sayout()
+
+    /// <summary>
+    /// 關閉對話
+    /// </summary>
+    private void SayClose()
     {
         objCanvas.SetActive(false);
     }
-
-
-
-
 }

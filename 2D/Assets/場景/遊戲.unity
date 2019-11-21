@@ -200,9 +200,9 @@ GameObject:
   - component: {fileID: 448185116}
   - component: {fileID: 448185115}
   - component: {fileID: 448185114}
-  - component: {fileID: 448185117}
   - component: {fileID: 448185113}
   - component: {fileID: 448185112}
+  - component: {fileID: 448185117}
   m_Layer: 0
   m_Name: opossum-1
   m_TagString: Untagged
@@ -337,13 +337,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _state: 0
-  sayStart: "\u55E8,\u8ACB\u8490\u96C6\u5341\u9846\u5BF6\u77F3!"
-  not_complete: "\u4EFB\u52D9\u5C1A\u672A\u5B8C\u6210!\u9084\u9700\u898110\u9846\u5BF6\u77F3\u5594!!"
-  complete: "\u606D\u559C\u4F60!!\u4EFB\u52D9\u5B8C\u6210~\u8B1D\u8B1D\u4F60"
-  talkspeed: 1.5
-  mission_complete: 0
-  count_player: 0
-  finish: 10
+  sayStart: "\u55E8,\u66FF\u6211\u8490\u96C6\u5341\u9846\u5BF6\u77F3!"
+  sayNotComplete: "\u9084\u6C92\u627E\u5230\u5341\u9846\u947D\u77F3\u5594"
+  sayComplete: "\u611F\u8B1D\u4F60\u5E6B\u6211\u627E\u5230\u5341\u9846\u947D\u77F3~"
+  speed: 1.5
+  complete: 0
+  countPlayer: 0
+  countFinish: 10
   objCanvas: {fileID: 480500148}
   textSay: {fileID: 168791804}
 --- !u!1 &475088926
@@ -1011,6 +1011,7 @@ GameObject:
   - component: {fileID: 937305277}
   - component: {fileID: 937305281}
   - component: {fileID: 937305280}
+  - component: {fileID: 937305282}
   m_Layer: 0
   m_Name: gem-1
   m_TagString: Untagged
@@ -1130,6 +1131,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &937305282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937305276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a242ef6621ae6a40b86b4e9db257bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  say: "\u55E8!!!"
+  values:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  scores: 64000000500000005a0000001e00000028000000
+  colors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1262997412
 GameObject:
   m_ObjectHideFlags: 0
