@@ -1,4 +1,5 @@
 ﻿using UnityEngine;                                // 引用 Unity API - API 倉庫 功能、工具
+using UnityEngine.Events;           // 引用 事件 API
 
 public class Fox : MonoBehaviour                  // 類別 類別名稱
 {
@@ -9,6 +10,12 @@ public class Fox : MonoBehaviour                  // 類別 類別名稱
     public string foxName = "狐狸";               // 字串
     public bool pass = false;                     // 布林值 - true/false
     public bool isGround;
+
+
+    public UnityEvent onEat;
+
+
+
 
     private Rigidbody2D r2d;
     //private Transform tra;
@@ -47,6 +54,14 @@ public class Fox : MonoBehaviour                  // 類別 類別名稱
         Debug.Log("碰到東西：" + collision.gameObject);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Diamond")
+        {
+            Destroy(collision.gameObject);  // 刪除
+            onEat.Invoke();                 // 呼叫事件
+        }
+    }
 
 
 
