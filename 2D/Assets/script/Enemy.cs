@@ -35,15 +35,60 @@ public class Enemy : MonoBehaviour
     ///</summary>
     private void Move()
     {
-        r2d.AddForce(new Vector2(-speed, 0));
+        //r2d.AddForce(new Vector2(-speed, 0)); 世界座標
+        r2d.AddForce(-transform.right * speed); // 區域座標 2D transform.right 右邊 transform.up 上方
+
+        //碰撞資訊 = 物理.射線碰撞
+        RaycastHit2D hit = Physics2D.Raycast(checkpoint.position, -checkpoint.up, 1.5f, 1 << 8);
+
+        //print(hit.collider.gameObject);
+
+        if (hit == false)
+        {
+            transform.eulerAngles += new Vector3(0, 180, 0);
+
+        }
+
+
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.name == "狐狸")
+        {
+            Track(collision.transform.position);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "狐狸")
+        {
+            collision.gameObject.GetComponent<Fox>().Damage(damage);
+
+        }
     }
 
 
-    ///<summary>
-    ///追蹤
-    ///</summary>
-    private void Track()
+
+
+
+    /// <summary>
+    /// 追蹤玩家
+    /// </summary>
+    /// <param name="target">玩家座標</param>
+    private void Track(Vector3 target)
     {
+        if (target.x < transform.position.x)
+        {
+            transform.eulerAngles = Vector3.zero;  // new Vector3(0,0,0)
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        }
+
 
     }
 
